@@ -5,6 +5,7 @@ namespace FakeATM
     public class Program
     {
         public static decimal balance = 5000;
+        public static bool exit = false;
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Fake ATM\n");
@@ -13,14 +14,14 @@ namespace FakeATM
         public static void UserInterface()
         {
             Console.WriteLine("Make a selection from the menu:\n1. Check Balance \n2. Deposit \n3. Withdraw \n4. Exit");
-            bool exit = false;
+            
             while (!exit)
             {
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
-                        Console.WriteLine($"balance: {ViewBalance()}");
+                        Console.WriteLine($"Your current balance is: {ViewBalance()}");
                         break;
                     case "2":
                         Console.WriteLine("deposit");
@@ -35,10 +36,31 @@ namespace FakeATM
                         exit = true;
                         break;
                     default:
-                        Console.WriteLine("catch all");
+                        Console.WriteLine("Please enter a valid menu option.");
+                        UserInterface();
                         break;
                 }
                 UserInterface();
+            }
+        }
+
+        public static void AnotherTransacton()
+        {
+            Console.WriteLine("Would you like to make another transaction?\n1. yes\n2. no");
+            string userInput = Console.ReadLine();
+            if (userInput == "1")
+            {
+                UserInterface();
+            }
+            else if (userInput == "2")
+            {
+                exit = true;
+                UserInterface();
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid menu option.");
+                AnotherTransacton();
             }
         }
 
