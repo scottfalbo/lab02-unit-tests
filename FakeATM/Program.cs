@@ -24,7 +24,7 @@ namespace FakeATM
                         Console.WriteLine($"Your current balance is: {ViewBalance()}");
                         break;
                     case "2":
-                        Console.WriteLine("deposit");
+                        Console.WriteLine("How much would you like to deposit?:");
                         Deposit(GetAmount());
                         break;
                     case "3":
@@ -37,7 +37,6 @@ namespace FakeATM
                         break;
                     default:
                         Console.WriteLine("Please enter a valid menu option.");
-                        UserInterface();
                         break;
                 }
                 UserInterface();
@@ -66,7 +65,9 @@ namespace FakeATM
 
         public static decimal GetAmount()
         {
-            return 0;
+            string userInput = Console.ReadLine();
+            decimal input = Convert.ToDecimal(userInput);
+            return input;
         }
         // return current balance
         public static decimal ViewBalance()
