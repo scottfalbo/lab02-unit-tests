@@ -77,7 +77,7 @@ namespace FakeATM
 
             while (!validator)
             {
-                Console.WriteLine($"Please enter a valid, positive amount,\nthat does not exceed your balance of {balance}");
+                Console.WriteLine($"Please enter a valid, positive, amount.");
                 userInput = Console.ReadLine();
                 validator = ValidInputAmount(userInput);
             }
@@ -89,7 +89,7 @@ namespace FakeATM
         public static bool ValidInputAmount(string userinput)
         {
             bool checkDecimal = decimal.TryParse(userinput, out decimal amount);
-            return checkDecimal;
+            return (checkDecimal && amount > 0) ? true : false;
         }
 
         // return current balance
@@ -107,7 +107,6 @@ namespace FakeATM
 
         // deposit
         public static decimal Deposit(decimal amount)
-
         {
             balance = decimal.Add(balance, amount);
             return balance;
