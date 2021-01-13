@@ -71,10 +71,27 @@ namespace FakeATM
 
         public static decimal GetAmount()
         {
+            
             string userInput = Console.ReadLine();
+            bool validator = ValidInputAmount(userInput);
+
+            while (!validator)
+            {
+                Console.WriteLine($"Please enter a valid, positive amount,\nthat does not exceed your balance of {balance}");
+                userInput = Console.ReadLine();
+                validator = ValidInputAmount(userInput);
+            }
+
             decimal input = Convert.ToDecimal(userInput);
             return input;
         }
+
+        public static bool ValidInputAmount(string userinput)
+        {
+            bool checkDecimal = decimal.TryParse(userinput, out decimal amount);
+            return checkDecimal;
+        }
+
         // return current balance
         public static decimal ViewBalance()
         {

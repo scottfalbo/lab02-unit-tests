@@ -28,5 +28,16 @@ namespace FakeATMTests
             decimal result = Program.Deposit(500);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData(true, "300.65")]
+        [InlineData(true, "100")]
+        [InlineData(false, "money me")]
+        [InlineData(false, "-750.00")]
+        public void ValidateInputTest(bool expected, string testInput)
+        {
+            bool result = Program.ValidInputAmount(testInput);
+            Assert.Equal(expected, result);
+        }
     }
 }
