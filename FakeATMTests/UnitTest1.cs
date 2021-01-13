@@ -9,8 +9,9 @@ namespace FakeATMTests
         [Fact]
         public void CheckBalanceTest()
         {
-            decimal balance = Program.balance;
-            Assert.Equal(Program.balance, balance);
+            decimal expected = Program.balance;
+            decimal result = Program.ViewBalance();
+            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -44,7 +45,7 @@ namespace FakeATMTests
         public void OverDrawTest()
         {
             decimal expected = Program.balance;
-            decimal testInput = decimal.Add(expected, expected + 1);
+            decimal testInput = decimal.Add(expected, (expected + 1));
             decimal result = Program.Withdraw(testInput);
             Assert.Equal(expected, result);
         }
