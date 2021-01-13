@@ -34,14 +34,12 @@ namespace FakeATM
                         AnotherTransacton();
                         break;
                     case "4":
-                        Console.WriteLine("exit");
-                        exit = true;
+                        PowerDown();
                         break;
                     default:
                         Console.WriteLine("Please enter a valid menu option.");
                         break;
                 }
-                UserInterface();
             }
         }
 
@@ -55,14 +53,20 @@ namespace FakeATM
             }
             else if (userInput == "2")
             {
-                exit = true;
-                UserInterface();
+                PowerDown();
             }
             else
             {
                 Console.WriteLine("Please enter a valid menu option.");
                 AnotherTransacton();
             }
+        }
+
+        public static void PowerDown()
+        {
+            exit = true;
+            Console.WriteLine("ATM Bot powering down, beep boop.");
+            Console.WriteLine("Did you just say, \"beep boop\",  with your mouth?");
         }
 
         public static decimal GetAmount()
