@@ -13,7 +13,6 @@ namespace FakeATMTests
             Assert.Equal(Program.balance, balance);
         }
 
-        [Fact]
         public void WithdrawTest()
         {
             decimal expected = Program.balance - 500;
@@ -37,6 +36,15 @@ namespace FakeATMTests
         public void ValidateInputTest(bool expected, string testInput)
         {
             bool result = Program.ValidInputAmount(testInput);
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void OverDrawTest()
+        {
+            decimal expected = Program.balance;
+            decimal testInput = decimal.Add(expected, expected + 1);
+            decimal result = Program.Withdraw(testInput);
             Assert.Equal(expected, result);
         }
     }

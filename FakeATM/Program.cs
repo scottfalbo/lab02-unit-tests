@@ -101,8 +101,18 @@ namespace FakeATM
         // withdraw from the balance
         public static decimal Withdraw(decimal amount)
         {
-            balance = decimal.Subtract(balance, amount);
-            return balance;
+            
+            decimal newBalance = decimal.Subtract(balance, amount);
+            if (newBalance < 0)
+            {
+                Console.WriteLine("Insufficient funds, please select again from the menu.");
+                return balance;
+            }
+            else
+            {
+                balance = newBalance;
+                return balance;
+            }
         }
 
         // deposit
