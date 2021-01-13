@@ -25,11 +25,13 @@ namespace FakeATM
                         break;
                     case "2":
                         Console.WriteLine("How much would you like to deposit?:");
-                        Deposit(GetAmount());
+                        Console.WriteLine($"Your new balance is: {Deposit(GetAmount())}");
+                        AnotherTransacton();
                         break;
                     case "3":
-                        Console.WriteLine("withdraw");
-                        Withdraw(GetAmount());
+                        Console.WriteLine("How much would you like to withdraw?:");
+                        Console.WriteLine($"Your new balance is: {Withdraw(GetAmount())}");
+                        AnotherTransacton();
                         break;
                     case "4":
                         Console.WriteLine("exit");
@@ -78,14 +80,16 @@ namespace FakeATM
         // withdraw from the balance
         public static decimal Withdraw(decimal amount)
         {
-            return decimal.Subtract(balance, amount);
+            balance = decimal.Subtract(balance, amount);
+            return balance;
         }
 
         // deposit
         public static decimal Deposit(decimal amount)
 
         {
-            return decimal.Add(balance, amount);
+            balance = decimal.Add(balance, amount);
+            return balance;
         }
     }
 }
