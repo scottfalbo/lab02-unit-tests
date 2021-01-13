@@ -13,6 +13,7 @@ namespace FakeATMTests
             Assert.Equal(Program.balance, balance);
         }
 
+        [Fact]
         public void WithdrawTest()
         {
             decimal expected = Program.balance - 500;
